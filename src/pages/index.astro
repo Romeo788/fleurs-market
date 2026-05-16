@@ -1,11 +1,290 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <!-- ═══════════════════════════════════════════════════════════════
+       HERO - Full Screen Immersive
+       Texte DIRECTEMENT sur l'image, pas de box blanche
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="relative h-screen flex items-center justify-start overflow-hidden">
+    <!-- Background image + green overlay + grain -->
+    <div class="absolute inset-0 bg-vintage-green">
+      <div class="absolute inset-0 bg-[url('/images/hero.jpg')] bg-cover bg-center mix-blend-multiply opacity-70"></div>
+      <div class="grain absolute inset-0"></div>
+    </div>
+
+    <!-- Content - asymétrique, aligné à gauche -->
+    <div class="relative z-10 px-6 sm:px-10 md:px-20 max-w-[1400px] w-full">
+      <p class="font-accent text-[11px] md:text-[13px] uppercase tracking-[4px] text-mustard-gold mb-6 reveal">
+        Depuis les marchés provençaux
+      </p>
+      <h1 class="font-heading text-[56px] sm:text-[72px] md:text-[96px] lg:text-[120px] text-off-white leading-[0.9] mb-8 reveal">
+        Fleurs<br />de Marché
+      </h1>
+      <p class="font-subheading text-xl md:text-2xl text-off-white/80 italic max-w-md mb-10 reveal">
+        L'Isle-sur-la-Sorgue • Salon-de-Provence<br />Pont-Saint-Esprit
+      </p>
+      <a href="/marches" class="inline-block bg-forest-deep text-off-white px-12 py-5 font-body font-bold text-sm uppercase tracking-[2px] btn-brutal reveal">
+        Découvrir nos marchés
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
+      <span class="font-accent text-[10px] uppercase tracking-[3px] text-off-white/60">Scroll</span>
+      <div class="w-px h-8 bg-off-white/40"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       NOTRE HISTOIRE - Layout Magazine Asymétrique
+       60% image / 40% texte, photo en rotation
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="bg-cream-warm py-20 md:py-32 overflow-hidden">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 items-center">
+        <!-- Grande photo - 7 colonnes -->
+        <div class="md:col-span-7 reveal-left">
+          <div class="relative">
+            <!-- Cadre vintage avec rotation -->
+            <div class="bg-off-white p-3 md:p-4 shadow-2xl md:-rotate-2 hover:rotate-0 transition-transform duration-700">
+              <div class="aspect-[4/5] bg-sepia-brown/20 vintage-photo relative overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <p class="font-accent text-sm text-charcoal/30 uppercase tracking-widest">Portrait famille</p>
+                </div>
+                <div class="grain absolute inset-0"></div>
+              </div>
+            </div>
+            <!-- Label flottant -->
+            <div class="absolute -bottom-4 -right-2 md:-right-6 bg-terracotta text-off-white px-5 py-2 font-accent text-[11px] uppercase tracking-[2px] rotate-3">
+              Depuis toujours
+            </div>
+          </div>
+        </div>
+
+        <!-- Texte - 5 colonnes -->
+        <div class="md:col-span-5 md:pl-8 reveal-right">
+          <p class="font-accent text-[11px] uppercase tracking-[4px] text-terracotta mb-4">Notre histoire</p>
+          <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl text-charcoal leading-[0.95] mb-8">
+            Une affaire de famille
+          </h2>
+          <div class="space-y-5 font-body text-lg text-charcoal/75 leading-[1.8]" style="text-align: justify;">
+            <p>
+              Depuis des années, nous parcourons les marchés provençaux pour vous offrir les plus belles fleurs de saison. Une mère et son fils, unis par la même passion.
+            </p>
+            <p>
+              Chaque bouquet est une création unique, composée avec soin à partir de fleurs fraîches sélectionnées chez les meilleurs producteurs du Sud.
+            </p>
+          </div>
+          <a href="/evenements" class="inline-block mt-8 font-accent text-[12px] uppercase tracking-[3px] text-forest-deep border-b-2 border-forest-deep pb-1 hover:text-terracotta hover:border-terracotta transition-colors duration-300">
+            Notre approche →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       NOS MARCHÉS - Fond vert foncé, cards décalées
+       Layout brisé, pas de grid sage
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="relative bg-vintage-green py-20 md:py-32 overflow-hidden">
+    <div class="grain absolute inset-0"></div>
+
+    <div class="relative z-10 max-w-[1400px] mx-auto px-6 sm:px-10">
+      <!-- Header -->
+      <div class="mb-16 md:mb-24">
+        <p class="font-accent text-[11px] uppercase tracking-[4px] text-mustard-gold mb-4 reveal">Chaque semaine</p>
+        <h2 class="font-heading text-5xl md:text-7xl text-off-white leading-[0.95] reveal">
+          Nos Marchés
+        </h2>
+      </div>
+
+      <!-- Cards décalées -->
+      <div class="space-y-12 md:space-y-0 md:grid md:grid-cols-12 md:gap-6 md:items-start">
+
+        <!-- L'Isle-sur-la-Sorgue - décalé haut -->
+        <div class="md:col-span-4 md:mt-0 reveal">
+          <article class="group border-2 border-off-white/20 hover:border-mustard-gold/60 p-6 md:p-8 transition-all duration-500 hover:scale-[1.03] hover:rotate-[1.5deg]">
+            <div class="aspect-[4/3] bg-charcoal/30 mb-6 overflow-hidden relative vintage-photo">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <p class="font-accent text-xs text-off-white/40 uppercase tracking-widest">Photo marché</p>
+              </div>
+              <div class="grain absolute inset-0"></div>
+            </div>
+            <span class="font-accent text-[11px] uppercase tracking-[3px] text-mustard-gold">Dimanche • 7h–13h</span>
+            <h3 class="font-heading text-3xl md:text-4xl text-off-white mt-3 mb-3">L'Isle-sur-la-Sorgue</h3>
+            <p class="font-body text-sage-light text-base leading-relaxed">
+              Le célèbre marché provençal au bord de la Sorgue. Près de la place de l'Église.
+            </p>
+            <div class="mt-4 font-heading text-6xl text-off-white/10 group-hover:text-mustard-gold/30 transition-colors">84</div>
+          </article>
+        </div>
+
+        <!-- Salon-de-Provence - décalé bas -->
+        <div class="md:col-span-4 md:mt-20 reveal">
+          <article class="group border-2 border-off-white/20 hover:border-mustard-gold/60 p-6 md:p-8 transition-all duration-500 hover:scale-[1.03] hover:-rotate-[1.5deg]">
+            <div class="aspect-[4/3] bg-charcoal/30 mb-6 overflow-hidden relative vintage-photo">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <p class="font-accent text-xs text-off-white/40 uppercase tracking-widest">Photo marché</p>
+              </div>
+              <div class="grain absolute inset-0"></div>
+            </div>
+            <span class="font-accent text-[11px] uppercase tracking-[3px] text-mustard-gold">Mercredi • 7h–13h</span>
+            <h3 class="font-heading text-3xl md:text-4xl text-off-white mt-3 mb-3">Salon-de-Provence</h3>
+            <p class="font-body text-sage-light text-base leading-relaxed">
+              Au cœur du centre-ville, sous les platanes centenaires.
+            </p>
+            <div class="mt-4 font-heading text-6xl text-off-white/10 group-hover:text-mustard-gold/30 transition-colors">13</div>
+          </article>
+        </div>
+
+        <!-- Pont-Saint-Esprit - décalé milieu -->
+        <div class="md:col-span-4 md:mt-8 reveal">
+          <article class="group border-2 border-off-white/20 hover:border-mustard-gold/60 p-6 md:p-8 transition-all duration-500 hover:scale-[1.03] hover:rotate-[2deg]">
+            <div class="aspect-[4/3] bg-charcoal/30 mb-6 overflow-hidden relative vintage-photo">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <p class="font-accent text-xs text-off-white/40 uppercase tracking-widest">Photo marché</p>
+              </div>
+              <div class="grain absolute inset-0"></div>
+            </div>
+            <span class="font-accent text-[11px] uppercase tracking-[3px] text-mustard-gold">Samedi • 7h–13h</span>
+            <h3 class="font-heading text-3xl md:text-4xl text-off-white mt-3 mb-3">Pont-Saint-Esprit</h3>
+            <p class="font-body text-sage-light text-base leading-relaxed">
+              Un marché authentique au bord du Rhône, ambiance villageoise.
+            </p>
+            <div class="mt-4 font-heading text-6xl text-off-white/10 group-hover:text-mustard-gold/30 transition-colors">30</div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       NOS CRÉATIONS - Galerie Collage irrégulier
+       Style planche-contact, rotations, tailles différentes
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="bg-off-white py-20 md:py-32 overflow-hidden">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-10">
+      <!-- Header -->
+      <div class="mb-12 md:mb-20 reveal">
+        <p class="font-accent text-[11px] uppercase tracking-[4px] text-terracotta mb-4">Portfolio</p>
+        <h2 class="font-heading text-5xl md:text-7xl text-charcoal leading-[0.95]">
+          Nos Créations
+        </h2>
+      </div>
+
+      <!-- Masonry irrégulier avec rotations -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[180px] md:auto-rows-[220px]">
+        <!-- Photo 1 - grande -->
+        <a href="/creations" class="group relative row-span-2 bg-off-white p-2 shadow-lg rotate-[-2deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
+          <div class="w-full h-full bg-warm-beige vintage-photo relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Bouquet 1</p>
+            </div>
+            <div class="grain absolute inset-0"></div>
+            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
+              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Photo 2 -->
+        <a href="/creations" class="group relative bg-off-white p-2 shadow-lg rotate-[1deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
+          <div class="w-full h-full bg-sepia-brown/15 vintage-photo relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Bouquet 2</p>
+            </div>
+            <div class="grain absolute inset-0"></div>
+            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
+              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Photo 3 - tall -->
+        <a href="/creations" class="group relative row-span-2 bg-off-white p-2 shadow-lg rotate-[2deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
+          <div class="w-full h-full bg-coral-pink/15 vintage-photo relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Composition</p>
+            </div>
+            <div class="grain absolute inset-0"></div>
+            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
+              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Photo 4 -->
+        <a href="/creations" class="group relative bg-off-white p-2 shadow-lg rotate-[-1.5deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
+          <div class="w-full h-full bg-mustard-gold/15 vintage-photo relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Mariage</p>
+            </div>
+            <div class="grain absolute inset-0"></div>
+            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
+              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Photo 5 -->
+        <a href="/creations" class="group relative bg-off-white p-2 shadow-lg rotate-[3deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
+          <div class="w-full h-full bg-vintage-green/15 vintage-photo relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Saison</p>
+            </div>
+            <div class="grain absolute inset-0"></div>
+            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
+              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Photo 6 - wide -->
+        <a href="/creations" class="group relative col-span-2 bg-off-white p-2 shadow-lg rotate-[-1deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
+          <div class="w-full h-full bg-terracotta/10 vintage-photo relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Événement</p>
+            </div>
+            <div class="grain absolute inset-0"></div>
+            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
+              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center mt-14 reveal">
+        <a href="/creations" class="inline-block bg-charcoal text-off-white px-12 py-5 font-body font-bold text-sm uppercase tracking-[2px] btn-brutal">
+          Toutes nos créations
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       CTA FINAL - Mariages & Événements
+       Full width terracotta, impact dramatique
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="relative bg-terracotta py-24 md:py-36 overflow-hidden">
+    <div class="grain absolute inset-0"></div>
+    <!-- Decorative diagonal -->
+    <div class="absolute top-0 left-0 w-full h-24 bg-off-white" style="clip-path: polygon(0 0, 100% 0, 100% 0%, 0 100%);"></div>
+
+    <div class="relative z-10 max-w-[900px] mx-auto px-6 sm:px-10 text-center">
+      <p class="font-accent text-[11px] uppercase tracking-[4px] text-off-white/60 mb-6 reveal">Sur mesure</p>
+      <h2 class="font-heading text-5xl md:text-7xl lg:text-[80px] text-off-white leading-[0.95] mb-8 reveal">
+        Mariages &<br />Événements
+      </h2>
+      <p class="font-subheading text-xl md:text-2xl text-off-white/80 italic leading-relaxed mb-12 max-w-xl mx-auto reveal">
+        Créations florales personnalisées pour vos moments les plus précieux. De la conception à la réalisation.
+      </p>
+      <a href="/contact" class="inline-block bg-off-white text-charcoal px-14 py-6 font-body font-bold text-base md:text-lg uppercase tracking-[2px] btn-brutal reveal" style="box-shadow: 6px 6px 0px rgba(0,0,0,0.3);">
+        Demander un devis
+      </a>
+    </div>
+  </section>
 </Layout>
