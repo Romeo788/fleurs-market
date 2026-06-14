@@ -1,290 +1,339 @@
 ---
-import Layout from '../layouts/Layout.astro';
+// Page statique — rendu depuis public/index.html
 ---
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Co & Son Provence — Fleurs fraîches sur vos marchés</title>
+<meta name="description" content="Co & Son Provence : bouquets de fleurs fraîches sur les marchés de L'Isle-sur-la-Sorgue, Salon-de-Provence et Pont-Saint-Esprit. Réservez en click & collect, payez sur place.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
 
-<Layout>
-  <!-- ═══════════════════════════════════════════════════════════════
-       HERO - Full Screen Immersive
-       Texte DIRECTEMENT sur l'image, pas de box blanche
-       ═══════════════════════════════════════════════════════════════ -->
-  <section class="relative h-screen flex items-center justify-start overflow-hidden">
-    <!-- Background image + green overlay + grain -->
-    <div class="absolute inset-0 bg-vintage-green">
-      <div class="absolute inset-0 bg-[url('/images/hero.jpg')] bg-cover bg-center mix-blend-multiply opacity-70"></div>
-      <div class="grain absolute inset-0"></div>
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="logo">Co <span>&</span> Son <span>Provence</span></a>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#bouquets" data-spy>Bouquets</a></li>
+      <li><a href="#histoire" data-spy>Notre histoire</a></li>
+      <li><a href="#marches" data-spy>Nos marchés</a></li>
+      <li><a href="#whatsapp" data-spy>WhatsApp</a></li>
+      <li><a href="#reserver" class="nav-cta">Réserver</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="petal p1"></div>
+  <div class="petal p2"></div>
+  <div class="petal p3"></div>
+  <div class="petal p4"></div>
+  <div class="wrap">
+    <p class="hero-eyebrow">Fleuristes de marché · Provence</p>
+    <h1 class="hero-title">
+      <span class="line"><span class="line-inner">Des fleurs</span></span>
+      <span class="line"><span class="line-inner rose">fraîches,</span></span>
+      <span class="line"><span class="line-inner">du marché.</span></span>
+    </h1>
+    <p class="hero-sub">Une mère, un fils, et des bouquets composés à la main chaque matin. Réservez le vôtre en ligne, récupérez-le directement sur notre stand — vous payez sur place.</p>
+    <div class="hero-ctas">
+      <a href="#bouquets" class="btn btn-primary">Voir les bouquets</a>
+      <a href="#whatsapp" class="btn btn-ghost">Rejoindre le groupe WhatsApp</a>
+    </div>
+  </div>
+  <a href="#bouquets" class="hero-scroll">Découvrir</a>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Mercredi · Salon-de-Provence</span><span class="dot">✿</span>
+    <span>Jeudi · L'Isle-sur-la-Sorgue</span><span class="dot">✿</span>
+    <span>Samedi · Pont-Saint-Esprit</span><span class="dot">✿</span>
+    <span>Dimanche · L'Isle-sur-la-Sorgue</span><span class="dot">✿</span>
+    <span>Click & Collect</span><span class="dot">✿</span>
+  </div>
+  <div class="marquee-track">
+    <span>Mercredi · Salon-de-Provence</span><span class="dot">✿</span>
+    <span>Jeudi · L'Isle-sur-la-Sorgue</span><span class="dot">✿</span>
+    <span>Samedi · Pont-Saint-Esprit</span><span class="dot">✿</span>
+    <span>Dimanche · L'Isle-sur-la-Sorgue</span><span class="dot">✿</span>
+    <span>Click & Collect</span><span class="dot">✿</span>
+  </div>
+</div>
+
+<section id="bouquets">
+  <div class="wrap">
+    <p class="section-eyebrow reveal">Click & Collect</p>
+    <h2 class="reveal">Réservez votre bouquet,<br>récupérez-le au marché.</h2>
+    <div class="bouquet-grid">
+      <article class="bouquet-card reveal">
+        <div class="bouquet-photo">🌸</div>
+        <div class="bouquet-body">
+          <h3 class="bouquet-name">Le Sorguais</h3>
+          <p class="bouquet-desc">Pivoines généreuses, eucalyptus et touches de gypsophile. Notre signature, fraîche et élégante.</p>
+          <div class="bouquet-foot">
+            <span class="bouquet-price">18€</span>
+            <button class="reserve-btn" onclick="selectBouquet('Le Sorguais — 18€')">Réserver</button>
+          </div>
+        </div>
+      </article>
+      <article class="bouquet-card reveal">
+        <div class="bouquet-tag">Best-seller</div>
+        <div class="bouquet-photo">💜</div>
+        <div class="bouquet-body">
+          <h3 class="bouquet-name">Lavande Folle</h3>
+          <p class="bouquet-desc">Lavande de Provence, fleurs séchées et brins champêtres. Le parfum du Luberon dans vos mains.</p>
+          <div class="bouquet-foot">
+            <span class="bouquet-price">12€</span>
+            <button class="reserve-btn" onclick="selectBouquet('Lavande Folle — 12€')">Réserver</button>
+          </div>
+        </div>
+      </article>
+      <article class="bouquet-card reveal">
+        <div class="bouquet-photo">🌻</div>
+        <div class="bouquet-body">
+          <h3 class="bouquet-name">Coucher de Soleil</h3>
+          <p class="bouquet-desc">Tournesols, roses orangées et feuillages dorés. La chaleur provençale en bouquet.</p>
+          <div class="bouquet-foot">
+            <span class="bouquet-price">15€</span>
+            <button class="reserve-btn" onclick="selectBouquet('Coucher de Soleil — 15€')">Réserver</button>
+          </div>
+        </div>
+      </article>
+      <article class="bouquet-card reveal">
+        <div class="bouquet-photo">🌹</div>
+        <div class="bouquet-body">
+          <h3 class="bouquet-name">L'Amoureux</h3>
+          <p class="bouquet-desc">Roses rouges premium et verdure fine. Pour dire les choses sans dire un mot.</p>
+          <div class="bouquet-foot">
+            <span class="bouquet-price">22€</span>
+            <button class="reserve-btn" onclick="selectBouquet('L\'Amoureux — 22€')">Réserver</button>
+          </div>
+        </div>
+      </article>
+      <article class="bouquet-card reveal">
+        <div class="bouquet-photo">🌼</div>
+        <div class="bouquet-body">
+          <h3 class="bouquet-name">Le Champêtre</h3>
+          <p class="bouquet-desc">Fleurs des champs de saison, composées selon les arrivages du matin. Toujours une surprise.</p>
+          <div class="bouquet-foot">
+            <span class="bouquet-price">10€</span>
+            <button class="reserve-btn" onclick="selectBouquet('Le Champêtre — 10€')">Réserver</button>
+          </div>
+        </div>
+      </article>
+      <article class="bouquet-card reveal">
+        <div class="bouquet-tag">XXL</div>
+        <div class="bouquet-photo">💐</div>
+        <div class="bouquet-body">
+          <h3 class="bouquet-name">Le Généreux</h3>
+          <p class="bouquet-desc">Notre plus grand format : un bouquet spectaculaire mêlant le meilleur du stand. Idéal pour offrir grand.</p>
+          <div class="bouquet-foot">
+            <span class="bouquet-price">30€</span>
+            <button class="reserve-btn" onclick="selectBouquet('Le Généreux XXL — 30€')">Réserver</button>
+          </div>
+        </div>
+      </article>
     </div>
 
-    <!-- Content - asymétrique, aligné à gauche -->
-    <div class="relative z-10 px-6 sm:px-10 md:px-20 max-w-[1400px] w-full">
-      <p class="font-accent text-[11px] md:text-[13px] uppercase tracking-[4px] text-mustard-gold mb-6 reveal">
-        Depuis les marchés provençaux
-      </p>
-      <h1 class="font-heading text-[56px] sm:text-[72px] md:text-[96px] lg:text-[120px] text-off-white leading-[0.9] mb-8 reveal">
-        Fleurs<br />de Marché
-      </h1>
-      <p class="font-subheading text-xl md:text-2xl text-off-white/80 italic max-w-md mb-10 reveal">
-        L'Isle-sur-la-Sorgue • Salon-de-Provence<br />Pont-Saint-Esprit
-      </p>
-      <a href="/marches" class="inline-block bg-forest-deep text-off-white px-12 py-5 font-body font-bold text-sm uppercase tracking-[2px] btn-brutal reveal">
-        Découvrir nos marchés
+    <div class="cc-note reveal">
+      <strong>Comment ça marche ?</strong> Vous réservez ici, on prépare votre bouquet le matin même avec les fleurs les plus fraîches, vous le récupérez sur notre stand au marché de votre choix — et vous payez sur place, en espèces ou par carte. Zéro prépaiement, zéro stress.
+    </div>
+
+    <div class="form-panel reveal" id="reserver">
+      <h3>Réserver mon bouquet</h3>
+      <p>Remplissez le formulaire — on vous confirme par message. Paiement sur place au retrait.</p>
+      <form class="form-grid" id="reservationForm" onsubmit="return submitReservation(event)">
+        <div class="field">
+          <label for="name">Prénom & nom</label>
+          <input type="text" id="name" name="name" required placeholder="Marie Dupont" autocomplete="name" minlength="2" pattern=".*[a-zA-ZÀ-ÿ].*[a-zA-ZÀ-ÿ].*" title="Entrez au moins un prénom et un nom (minimum 2 lettres)">
+        </div>
+        <div class="field field-phone">
+          <label for="phone">Téléphone</label>
+          <input type="tel" id="phone" name="phone" required placeholder="+33 6 12 34 56 78" autocomplete="tel" pattern="\+?[0-9][0-9 .()-]{6,}" title="Entrez un numéro valide (ex: +33 6 12 34 56 78 ou 06 12 34 56 78)">
+          <span class="phone-flag" id="phoneFlag" aria-hidden="true"></span>
+        </div>
+        <div class="field">
+          <label for="bouquet">Bouquet</label>
+          <select id="bouquet" name="bouquet" required>
+            <option value="" disabled selected>Choisir un bouquet</option>
+            <option>Le Sorguais — 18€</option>
+            <option>Lavande Folle — 12€</option>
+            <option>Coucher de Soleil — 15€</option>
+            <option>L'Amoureux — 22€</option>
+            <option>Le Champêtre — 10€</option>
+            <option>Le Généreux XXL — 30€</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="market">Marché de retrait</label>
+          <select id="market" name="market" required>
+            <option value="" disabled selected>Choisir un marché</option>
+            <option>Salon-de-Provence (13) — Mercredi</option>
+            <option>L'Isle-sur-la-Sorgue (84) — Jeudi</option>
+            <option>Pont-Saint-Esprit (30) — Samedi</option>
+            <option>L'Isle-sur-la-Sorgue (84) — Dimanche</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Date de retrait</label>
+          <input type="hidden" id="date" name="date" required>
+          <button type="button" class="date-trigger" id="dateTrigger" aria-haspopup="dialog">
+            <span id="dateLabel">Choisir une date</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </button>
+          <div class="cal-dropdown" id="calDropdown">
+            <div class="cal-header">
+              <button type="button" class="cal-nav" id="calPrev" aria-label="Mois précédent">‹</button>
+              <span class="cal-month" id="calMonth"></span>
+              <button type="button" class="cal-nav" id="calNext" aria-label="Mois suivant">›</button>
+            </div>
+            <div class="cal-days-head">
+              <span>Lu</span><span>Ma</span><span>Me</span><span>Je</span><span>Ve</span><span>Sa</span><span>Di</span>
+            </div>
+            <div class="cal-grid" id="calGrid"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="time">Heure approximative</label>
+          <select id="time" name="time">
+            <option>8h – 9h</option>
+            <option>9h – 10h</option>
+            <option selected>10h – 11h</option>
+            <option>11h – 12h</option>
+            <option>12h – 13h</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="message">Un mot pour nous ? (optionnel)</label>
+          <textarea id="message" name="message" placeholder="Couleurs préférées, occasion spéciale, petit mot à glisser dans le bouquet…"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Envoyer ma réservation →</button>
+        <div class="form-success" id="formSuccess">✅ Votre demande s'ouvre dans WhatsApp — envoyez le message et c'est réservé !</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="histoire" id="histoire">
+  <div class="wrap">
+    <div class="histoire-grid">
+      <div class="histoire-text">
+        <p class="section-eyebrow reveal">Notre histoire</p>
+        <h2 class="reveal">Une mère,<br>un fils,<br>des fleurs.</h2>
+        <div class="reveal">
+          <p><strong>Co & Son Provence</strong>, c'est avant tout une histoire de famille. Une mère passionnée par les fleurs depuis toujours, et un fils qui a décidé de transformer cette passion en aventure commune.</p>
+          <p>Chaque semaine, on sillonne les marchés de Provence — de <strong>L'Isle-sur-la-Sorgue</strong>, notre port d'attache au cœur du Luberon, jusqu'à <strong>Salon-de-Provence</strong> et <strong>Pont-Saint-Esprit</strong>. Nos bouquets sont composés à la main, le matin même, avec des fleurs choisies une par une.</p>
+          <p>Pas de boutique, pas d'intermédiaire : juste un stand, des fleurs fraîches, et la conviction qu'un beau bouquet ne devrait jamais être compliqué à offrir.</p>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><div class="num">4</div><div class="lab">Marchés / semaine</div></div>
+          <div class="stat"><div class="num">3</div><div class="lab">Départements</div></div>
+          <div class="stat"><div class="num">100%</div><div class="lab">Fait main</div></div>
+        </div>
+      </div>
+      <figure class="histoire-visual reveal">
+        <div class="big-flower" aria-hidden="true">💐</div>
+        <figcaption>📸 Votre photo ici : vous deux sur le stand, au lever du soleil.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="marches">
+  <div class="wrap">
+    <p class="section-eyebrow reveal">Où nous trouver</p>
+    <h2 class="reveal">Nos marchés.</h2>
+    <div class="market-grid">
+      <div class="market-card reveal">
+        <span class="market-dep">84</span>
+        <h3>L'Isle-sur-la-Sorgue</h3>
+        <p class="days">Jeudi & Dimanche</p>
+        <p class="hours">8h – 13h · Centre-ville, le long de la Sorgue</p>
+      </div>
+      <div class="market-card reveal">
+        <span class="market-dep">13</span>
+        <h3>Salon-de-Provence</h3>
+        <p class="days">Mercredi</p>
+        <p class="hours">8h – 13h · Place Morgan & centre ancien</p>
+      </div>
+      <div class="market-card reveal">
+        <span class="market-dep">30</span>
+        <h3>Pont-Saint-Esprit</h3>
+        <p class="days">Samedi</p>
+        <p class="hours">8h – 13h · Boulevard Gambetta</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wa-section" id="whatsapp">
+  <div class="petal p1"></div>
+  <div class="petal p3"></div>
+  <div class="wrap">
+    <div class="wa-inner">
+      <p class="section-eyebrow reveal">Le bon plan</p>
+      <h2 class="reveal">Rejoignez le groupe <em>WhatsApp</em>.</h2>
+      <p class="wa-sub reveal">Les meilleures offres ne sont pas sur le stand — elles sont dans votre poche.</p>
+      <div class="wa-perks">
+        <div class="wa-perk reveal">
+          <div class="icon">📅</div>
+          <h4>Actualités</h4>
+          <p>Les arrivages du jour, nos présences sur les marchés et les nouveautés en avant-première.</p>
+        </div>
+        <div class="wa-perk reveal">
+          <div class="icon">🏷️</div>
+          <h4>Remises quotidiennes</h4>
+          <p>Chaque jour, une offre exclusive réservée aux membres du groupe. Personne d'autre n'y a accès.</p>
+        </div>
+        <div class="wa-perk reveal">
+          <div class="icon">⚡</div>
+          <h4>Offres invendus</h4>
+          <p>En fin de marché, les derniers bouquets partent à prix cassés — premiers arrivés, premiers servis.</p>
+        </div>
+      </div>
+      <a href="https://chat.whatsapp.com/VOTRE_LIEN_GROUPE" class="wa-btn reveal" target="_blank" rel="noopener">
+        💬 Rejoindre le groupe
       </a>
     </div>
+  </div>
+</section>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
-      <span class="font-accent text-[10px] uppercase tracking-[3px] text-off-white/60">Scroll</span>
-      <div class="w-px h-8 bg-off-white/40"></div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Co <span>&</span> Son <span>Provence</span></div>
+        <p class="footer-desc">Fleurs fraîches sur les marchés de Provence. Une mère, un fils, des bouquets faits main.</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#bouquets">Bouquets & réservation</a></li>
+        <li><a href="#histoire">Notre histoire</a></li>
+        <li><a href="#marches">Nos marchés</a></li>
+        <li><a href="#whatsapp">Groupe WhatsApp</a></li>
+      </ul>
+      <ul class="footer-links">
+        <li><a href="tel:+33600000000">06 00 00 00 00</a></li>
+        <li><a href="mailto:contact@coetsonprovence.fr">contact@coetsonprovence.fr</a></li>
+        <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
+      </ul>
     </div>
-  </section>
+    <p class="copyright">© 2026 Co & Son Provence — Tous droits réservés · Mentions légales</p>
+  </div>
+</footer>
 
-  <!-- ═══════════════════════════════════════════════════════════════
-       NOTRE HISTOIRE - Layout Magazine Asymétrique
-       60% image / 40% texte, photo en rotation
-       ═══════════════════════════════════════════════════════════════ -->
-  <section class="bg-cream-warm py-20 md:py-32 overflow-hidden">
-    <div class="max-w-[1400px] mx-auto px-6 sm:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 items-center">
-        <!-- Grande photo - 7 colonnes -->
-        <div class="md:col-span-7 reveal-left">
-          <div class="relative">
-            <!-- Cadre vintage avec rotation -->
-            <div class="bg-off-white p-3 md:p-4 shadow-2xl md:-rotate-2 hover:rotate-0 transition-transform duration-700">
-              <div class="aspect-[4/5] bg-sepia-brown/20 vintage-photo relative overflow-hidden">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <p class="font-accent text-sm text-charcoal/30 uppercase tracking-widest">Portrait famille</p>
-                </div>
-                <div class="grain absolute inset-0"></div>
-              </div>
-            </div>
-            <!-- Label flottant -->
-            <div class="absolute -bottom-4 -right-2 md:-right-6 bg-terracotta text-off-white px-5 py-2 font-accent text-[11px] uppercase tracking-[2px] rotate-3">
-              Depuis toujours
-            </div>
-          </div>
-        </div>
+<div class="petal-rain" id="petalRain" aria-hidden="true"></div>
 
-        <!-- Texte - 5 colonnes -->
-        <div class="md:col-span-5 md:pl-8 reveal-right">
-          <p class="font-accent text-[11px] uppercase tracking-[4px] text-terracotta mb-4">Notre histoire</p>
-          <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl text-charcoal leading-[0.95] mb-8">
-            Une affaire de famille
-          </h2>
-          <div class="space-y-5 font-body text-lg text-charcoal/75 leading-[1.8]" style="text-align: justify;">
-            <p>
-              Depuis des années, nous parcourons les marchés provençaux pour vous offrir les plus belles fleurs de saison. Une mère et son fils, unis par la même passion.
-            </p>
-            <p>
-              Chaque bouquet est une création unique, composée avec soin à partir de fleurs fraîches sélectionnées chez les meilleurs producteurs du Sud.
-            </p>
-          </div>
-          <a href="/evenements" class="inline-block mt-8 font-accent text-[12px] uppercase tracking-[3px] text-forest-deep border-b-2 border-forest-deep pb-1 hover:text-terracotta hover:border-terracotta transition-colors duration-300">
-            Notre approche →
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+<button class="top-btn" id="topBtn" aria-label="Remonter en haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-  <!-- ═══════════════════════════════════════════════════════════════
-       NOS MARCHÉS - Fond vert foncé, cards décalées
-       Layout brisé, pas de grid sage
-       ═══════════════════════════════════════════════════════════════ -->
-  <section class="relative bg-vintage-green py-20 md:py-32 overflow-hidden">
-    <div class="grain absolute inset-0"></div>
-
-    <div class="relative z-10 max-w-[1400px] mx-auto px-6 sm:px-10">
-      <!-- Header -->
-      <div class="mb-16 md:mb-24">
-        <p class="font-accent text-[11px] uppercase tracking-[4px] text-mustard-gold mb-4 reveal">Chaque semaine</p>
-        <h2 class="font-heading text-5xl md:text-7xl text-off-white leading-[0.95] reveal">
-          Nos Marchés
-        </h2>
-      </div>
-
-      <!-- Cards décalées -->
-      <div class="space-y-12 md:space-y-0 md:grid md:grid-cols-12 md:gap-6 md:items-start">
-
-        <!-- L'Isle-sur-la-Sorgue - décalé haut -->
-        <div class="md:col-span-4 md:mt-0 reveal">
-          <article class="group border-2 border-off-white/20 hover:border-mustard-gold/60 p-6 md:p-8 transition-all duration-500 hover:scale-[1.03] hover:rotate-[1.5deg]">
-            <div class="aspect-[4/3] bg-charcoal/30 mb-6 overflow-hidden relative vintage-photo">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <p class="font-accent text-xs text-off-white/40 uppercase tracking-widest">Photo marché</p>
-              </div>
-              <div class="grain absolute inset-0"></div>
-            </div>
-            <span class="font-accent text-[11px] uppercase tracking-[3px] text-mustard-gold">Dimanche • 7h–13h</span>
-            <h3 class="font-heading text-3xl md:text-4xl text-off-white mt-3 mb-3">L'Isle-sur-la-Sorgue</h3>
-            <p class="font-body text-sage-light text-base leading-relaxed">
-              Le célèbre marché provençal au bord de la Sorgue. Près de la place de l'Église.
-            </p>
-            <div class="mt-4 font-heading text-6xl text-off-white/10 group-hover:text-mustard-gold/30 transition-colors">84</div>
-          </article>
-        </div>
-
-        <!-- Salon-de-Provence - décalé bas -->
-        <div class="md:col-span-4 md:mt-20 reveal">
-          <article class="group border-2 border-off-white/20 hover:border-mustard-gold/60 p-6 md:p-8 transition-all duration-500 hover:scale-[1.03] hover:-rotate-[1.5deg]">
-            <div class="aspect-[4/3] bg-charcoal/30 mb-6 overflow-hidden relative vintage-photo">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <p class="font-accent text-xs text-off-white/40 uppercase tracking-widest">Photo marché</p>
-              </div>
-              <div class="grain absolute inset-0"></div>
-            </div>
-            <span class="font-accent text-[11px] uppercase tracking-[3px] text-mustard-gold">Mercredi • 7h–13h</span>
-            <h3 class="font-heading text-3xl md:text-4xl text-off-white mt-3 mb-3">Salon-de-Provence</h3>
-            <p class="font-body text-sage-light text-base leading-relaxed">
-              Au cœur du centre-ville, sous les platanes centenaires.
-            </p>
-            <div class="mt-4 font-heading text-6xl text-off-white/10 group-hover:text-mustard-gold/30 transition-colors">13</div>
-          </article>
-        </div>
-
-        <!-- Pont-Saint-Esprit - décalé milieu -->
-        <div class="md:col-span-4 md:mt-8 reveal">
-          <article class="group border-2 border-off-white/20 hover:border-mustard-gold/60 p-6 md:p-8 transition-all duration-500 hover:scale-[1.03] hover:rotate-[2deg]">
-            <div class="aspect-[4/3] bg-charcoal/30 mb-6 overflow-hidden relative vintage-photo">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <p class="font-accent text-xs text-off-white/40 uppercase tracking-widest">Photo marché</p>
-              </div>
-              <div class="grain absolute inset-0"></div>
-            </div>
-            <span class="font-accent text-[11px] uppercase tracking-[3px] text-mustard-gold">Samedi • 7h–13h</span>
-            <h3 class="font-heading text-3xl md:text-4xl text-off-white mt-3 mb-3">Pont-Saint-Esprit</h3>
-            <p class="font-body text-sage-light text-base leading-relaxed">
-              Un marché authentique au bord du Rhône, ambiance villageoise.
-            </p>
-            <div class="mt-4 font-heading text-6xl text-off-white/10 group-hover:text-mustard-gold/30 transition-colors">30</div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       NOS CRÉATIONS - Galerie Collage irrégulier
-       Style planche-contact, rotations, tailles différentes
-       ═══════════════════════════════════════════════════════════════ -->
-  <section class="bg-off-white py-20 md:py-32 overflow-hidden">
-    <div class="max-w-[1400px] mx-auto px-6 sm:px-10">
-      <!-- Header -->
-      <div class="mb-12 md:mb-20 reveal">
-        <p class="font-accent text-[11px] uppercase tracking-[4px] text-terracotta mb-4">Portfolio</p>
-        <h2 class="font-heading text-5xl md:text-7xl text-charcoal leading-[0.95]">
-          Nos Créations
-        </h2>
-      </div>
-
-      <!-- Masonry irrégulier avec rotations -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[180px] md:auto-rows-[220px]">
-        <!-- Photo 1 - grande -->
-        <a href="/creations" class="group relative row-span-2 bg-off-white p-2 shadow-lg rotate-[-2deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
-          <div class="w-full h-full bg-warm-beige vintage-photo relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Bouquet 1</p>
-            </div>
-            <div class="grain absolute inset-0"></div>
-            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
-              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Photo 2 -->
-        <a href="/creations" class="group relative bg-off-white p-2 shadow-lg rotate-[1deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
-          <div class="w-full h-full bg-sepia-brown/15 vintage-photo relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Bouquet 2</p>
-            </div>
-            <div class="grain absolute inset-0"></div>
-            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
-              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Photo 3 - tall -->
-        <a href="/creations" class="group relative row-span-2 bg-off-white p-2 shadow-lg rotate-[2deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
-          <div class="w-full h-full bg-coral-pink/15 vintage-photo relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Composition</p>
-            </div>
-            <div class="grain absolute inset-0"></div>
-            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
-              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Photo 4 -->
-        <a href="/creations" class="group relative bg-off-white p-2 shadow-lg rotate-[-1.5deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
-          <div class="w-full h-full bg-mustard-gold/15 vintage-photo relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Mariage</p>
-            </div>
-            <div class="grain absolute inset-0"></div>
-            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
-              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Photo 5 -->
-        <a href="/creations" class="group relative bg-off-white p-2 shadow-lg rotate-[3deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
-          <div class="w-full h-full bg-vintage-green/15 vintage-photo relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Saison</p>
-            </div>
-            <div class="grain absolute inset-0"></div>
-            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
-              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Photo 6 - wide -->
-        <a href="/creations" class="group relative col-span-2 bg-off-white p-2 shadow-lg rotate-[-1deg] hover:rotate-0 hover:scale-105 transition-all duration-500 reveal">
-          <div class="w-full h-full bg-terracotta/10 vintage-photo relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <p class="font-accent text-[10px] text-charcoal/30 uppercase tracking-widest">Événement</p>
-            </div>
-            <div class="grain absolute inset-0"></div>
-            <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-300 flex items-center justify-center">
-              <span class="font-accent text-[11px] uppercase tracking-[2px] text-off-white opacity-0 group-hover:opacity-100 transition-opacity">Voir</span>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <!-- CTA -->
-      <div class="text-center mt-14 reveal">
-        <a href="/creations" class="inline-block bg-charcoal text-off-white px-12 py-5 font-body font-bold text-sm uppercase tracking-[2px] btn-brutal">
-          Toutes nos créations
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       CTA FINAL - Mariages & Événements
-       Full width terracotta, impact dramatique
-       ═══════════════════════════════════════════════════════════════ -->
-  <section class="relative bg-terracotta py-24 md:py-36 overflow-hidden">
-    <div class="grain absolute inset-0"></div>
-    <!-- Decorative diagonal -->
-    <div class="absolute top-0 left-0 w-full h-24 bg-off-white" style="clip-path: polygon(0 0, 100% 0, 100% 0%, 0 100%);"></div>
-
-    <div class="relative z-10 max-w-[900px] mx-auto px-6 sm:px-10 text-center">
-      <p class="font-accent text-[11px] uppercase tracking-[4px] text-off-white/60 mb-6 reveal">Sur mesure</p>
-      <h2 class="font-heading text-5xl md:text-7xl lg:text-[80px] text-off-white leading-[0.95] mb-8 reveal">
-        Mariages &<br />Événements
-      </h2>
-      <p class="font-subheading text-xl md:text-2xl text-off-white/80 italic leading-relaxed mb-12 max-w-xl mx-auto reveal">
-        Créations florales personnalisées pour vos moments les plus précieux. De la conception à la réalisation.
-      </p>
-      <a href="/contact" class="inline-block bg-off-white text-charcoal px-14 py-6 font-body font-bold text-base md:text-lg uppercase tracking-[2px] btn-brutal reveal" style="box-shadow: 6px 6px 0px rgba(0,0,0,0.3);">
-        Demander un devis
-      </a>
-    </div>
-  </section>
-</Layout>
+<script src="/script.js" is:inline></script>
+</body>
+</html>
