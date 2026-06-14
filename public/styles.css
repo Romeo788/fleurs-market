@@ -451,22 +451,57 @@ footer .footer-desc{font-size:.92rem;opacity:.75;margin-top:10px;max-width:340px
   html{scroll-behavior:auto}
 }
 
-/* ================= RESPONSIVE — TABLET (iPad) ================= */
+/* ================= RESPONSIVE — TABLET (iPad 768–1024) ================= */
 @media (max-width:1024px){
-  .wrap{padding:0 20px}
-  section{padding:88px 0}
-  .histoire-grid{grid-template-columns:1fr;gap:40px}
-  .histoire-visual{max-width:420px;margin:0 auto}
-  .wa-perks{grid-template-columns:1fr 1fr;gap:16px}
-  .wa-perks .wa-perk:last-child{grid-column:1/-1;max-width:50%;justify-self:center}
-  .bouquet-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
-  .market-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-  .footer-grid{gap:32px}
-  .form-panel{padding:48px 36px}
+  .wrap{padding:0 28px}
+  section{padding:80px 0}
+
+  /* Nav */
+  .nav-links{gap:22px}
+  .nav-links a:not(.nav-cta){font-size:.85rem}
+
+  /* Hero */
+  header{padding:calc(var(--nav-h) + 40px) 0 56px}
+  .hero-title{font-size:clamp(2.6rem,7vw,4.5rem)}
+  .hero-sub{max-width:460px;font-size:1.05rem}
+  .petal.p1{width:70px;height:70px}
+  .petal.p3{width:100px;height:100px}
+
+  /* Bouquets */
+  .bouquet-grid{grid-template-columns:repeat(2,1fr);gap:22px}
+  .bouquet-photo{font-size:2.8rem}
+
+  /* Form */
+  .form-panel{padding:44px 32px;border-radius:28px}
+
+  /* Histoire */
+  .histoire-grid{grid-template-columns:1fr;gap:44px}
+  .histoire-text{text-align:center}
+  .histoire-text .section-eyebrow{justify-content:center}
+  .histoire-text h2{text-align:center}
+  .histoire-text p{text-align:center;max-width:600px;margin-left:auto;margin-right:auto}
+  .histoire-visual{max-width:380px;margin:0 auto;aspect-ratio:1/1;border-radius:24px}
+  .histoire-visual .big-flower{font-size:5.5rem}
+  .stats{justify-content:center;gap:40px}
+
+  /* Marchés */
+  .market-grid{grid-template-columns:repeat(3,1fr);gap:18px}
+  .market-card{padding:26px 22px;text-align:center}
+  .market-dep{margin-left:auto;margin-right:auto}
+  .market-card h3{font-size:1.15rem}
+
+  /* WhatsApp */
+  .wa-perks{grid-template-columns:repeat(3,1fr);gap:16px}
+  .wa-perk{padding:22px 18px}
+
+  /* Footer */
+  .footer-grid{gap:28px}
+  footer .footer-desc{max-width:280px}
 }
 
-/* ================= RESPONSIVE — MOBILE NAV ================= */
+/* ================= RESPONSIVE — SMALL TABLET / LARGE PHONE (max 860) ================= */
 @media (max-width:860px){
+  /* Nav hamburger */
   .nav-links{
     position:fixed;top:var(--nav-h);right:0;left:0;
     background:var(--bg);border-bottom:2px solid var(--rose);
@@ -475,41 +510,21 @@ footer .footer-desc{font-size:.92rem;opacity:.75;margin-top:10px;max-width:340px
   }
   .nav-links.open{max-height:360px}
   .nav-links li{width:100%;justify-content:center}
-  .nav-links a:not(.nav-cta){justify-content:center;padding:16px 0;width:100%}
+  .nav-links a:not(.nav-cta){justify-content:center;padding:16px 0;width:100%;font-size:1rem}
   .nav-links a:not(.nav-cta)::after{display:none}
   .nav-cta{margin:14px auto 20px}
   .burger{display:block}
-  header{padding-top:calc(var(--nav-h) + 32px)}
-  .hero-title{font-size:clamp(2.4rem,11.5vw,4rem)}
-  .hero-ctas{flex-direction:column;align-items:stretch}
-  .hero-ctas .btn{width:100%}
-  .hero-scroll{display:none}
-  .form-grid{grid-template-columns:1fr}
-  .submit-btn{justify-self:stretch;width:100%}
-  .wa-perks{grid-template-columns:1fr}
-  .wa-perks .wa-perk:last-child{max-width:100%;justify-self:auto}
-  section{padding:80px 0}
-  .form-panel{padding:40px 26px}
-  .stats{gap:28px}
-  .top-btn{bottom:18px;right:18px}
-}
 
-/* ================= RESPONSIVE — SMALL MOBILE ================= */
-@media (max-width:480px){
-  :root{--nav-h:62px}
-  body{font-size:15px}
-  .wrap{padding:0 16px}
-  section{padding:60px 0}
-  .logo{font-size:1.05rem}
-  header{min-height:100svh;padding:calc(var(--nav-h) + 24px) 0 48px}
-  .hero-eyebrow{font-size:.75rem;margin-bottom:20px}
-  .hero-eyebrow::before{width:24px}
-  .hero-title{font-size:clamp(2rem,12vw,3.2rem)}
-  .hero-sub{font-size:1rem;margin-top:20px}
-  .hero-ctas{margin-top:28px;gap:12px}
-  .hero-ctas .btn{min-height:50px;font-size:.92rem}
-  .petal.p1{width:60px;height:60px;right:6%}
-  .petal.p3{width:80px;height:80px}
+  /* Hero */
+  header{padding:calc(var(--nav-h) + 32px) 0 48px}
+  .hero-title{font-size:clamp(2.2rem,10vw,3.6rem)}
+  .hero-sub{max-width:100%;font-size:1rem;margin-top:22px}
+  .hero-ctas{flex-direction:column;align-items:stretch;margin-top:28px;gap:12px}
+  .hero-ctas .btn{width:100%;min-height:52px;font-size:.95rem}
+  .hero-scroll{display:none}
+  .petal.p1{width:55px;height:55px;top:12%;right:6%}
+  .petal.p2{width:35px;height:35px}
+  .petal.p3{width:70px;height:70px;bottom:8%;right:4%}
   .petal.p4{display:none}
 
   /* Marquee */
@@ -517,72 +532,181 @@ footer .footer-desc{font-size:.92rem;opacity:.75;margin-top:10px;max-width:340px
   .marquee-track span{font-size:.9rem;padding:0 14px}
   .marquee .dot{padding:0 10px;font-size:.8rem}
 
-  /* Section titles */
-  .section-eyebrow{font-size:.75rem;margin-bottom:12px}
-  h2{font-size:clamp(1.7rem,8vw,2.4rem);margin-bottom:36px}
+  /* Sections */
+  section{padding:64px 0}
+  h2{font-size:clamp(1.8rem,7vw,2.6rem);margin-bottom:36px}
 
-  /* Bouquets */
-  .bouquet-grid{grid-template-columns:1fr;gap:18px}
-  .bouquet-card{padding:16px 16px 22px}
-  .bouquet-name{font-size:1.25rem}
-  .bouquet-desc{font-size:.9rem}
-  .bouquet-price{font-size:1.3rem;padding:5px 12px}
-  .reserve-btn{min-height:40px;padding:0 18px;font-size:.85rem}
-  .bouquet-tag{font-size:.65rem;padding:5px 36px;top:24px;right:-36px}
-  .cc-note{padding:18px 20px;font-size:.92rem;margin-top:28px}
+  /* Bouquets — 2 colonnes sur tablette, 1 sur petit écran */
+  .bouquet-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .bouquet-card{padding:14px 14px 20px}
+  .bouquet-photo{font-size:2.4rem;aspect-ratio:4/3}
+  .bouquet-body{padding:0 4px}
+  .bouquet-name{font-size:1.15rem}
+  .bouquet-desc{font-size:.88rem}
+  .bouquet-foot{flex-wrap:wrap;gap:8px}
+  .bouquet-price{font-size:1.2rem;padding:5px 12px}
+  .reserve-btn{min-height:40px;padding:0 16px;font-size:.82rem;flex:1;min-width:0}
+  .bouquet-tag{font-size:.6rem;padding:5px 32px;top:20px;right:-32px}
+  .cc-note{padding:18px 20px;font-size:.9rem;margin-top:24px;border-radius:14px}
 
   /* Form */
-  .form-panel{padding:32px 18px;border-radius:24px;margin-top:48px}
-  .form-panel h3{font-size:1.35rem;margin-bottom:8px}
+  .form-panel{padding:36px 22px;border-radius:24px;margin-top:40px}
+  .form-panel h3{font-size:1.4rem}
   .form-panel > p{font-size:.9rem;margin-bottom:28px}
-  .form-grid{gap:16px}
-  label{font-size:.78rem}
-  input,select,textarea{padding:12px 14px;min-height:48px;font-size:.95rem;border-radius:12px}
-  .date-trigger{padding:12px 14px;min-height:48px;border-radius:12px}
-  .cal-dropdown{padding:14px;border-radius:14px}
-  .cal-nav{width:32px;height:32px;font-size:1rem;border-radius:8px}
-  .cal-month{font-size:.95rem}
-  .cal-days-head{font-size:.7rem}
-  .cal-day{font-size:.82rem;border-radius:8px}
-  .submit-btn{min-height:54px;font-size:.95rem;padding:0 28px}
-  .field-phone input{padding-right:46px}
-  .phone-flag{font-size:1.1rem;right:14px}
+  .form-grid{grid-template-columns:1fr;gap:16px}
+  .submit-btn{justify-self:stretch;width:100%;min-height:54px;font-size:.95rem}
 
   /* Histoire */
-  .histoire-grid{gap:32px}
-  .histoire-text p{font-size:.95rem}
-  .histoire-visual{aspect-ratio:3/4;border-radius:20px;max-width:100%}
-  .histoire-visual .big-flower{font-size:5rem}
+  .histoire-grid{grid-template-columns:1fr;gap:36px}
+  .histoire-text{text-align:center}
+  .histoire-text .section-eyebrow{justify-content:center}
+  .histoire-text h2{text-align:center}
+  .histoire-text p{text-align:center;max-width:520px;margin-left:auto;margin-right:auto;font-size:.98rem}
+  .histoire-visual{max-width:320px;margin:0 auto;aspect-ratio:1/1;border-radius:20px}
+  .histoire-visual .big-flower{font-size:4.5rem}
   .histoire-visual figcaption{bottom:14px;left:14px;right:14px;padding:10px 14px;font-size:.82rem;border-radius:12px}
-  .stats{gap:20px;margin-top:28px}
-  .stat .num{font-size:2rem}
+  .stats{justify-content:center;gap:32px;margin-top:32px}
+  .stat .num{font-size:2.2rem}
   .stat .lab{font-size:.78rem}
 
   /* Marchés */
-  .market-grid{grid-template-columns:1fr;gap:14px}
-  .market-card{padding:24px 22px;border-radius:18px}
-  .market-dep{min-width:44px;height:34px;font-size:.9rem;padding:0 12px;border-radius:8px;margin-bottom:14px}
-  .market-card h3{font-size:1.15rem;margin-bottom:8px}
+  .market-grid{grid-template-columns:1fr;gap:14px;max-width:420px;margin:0 auto}
+  .market-card{padding:24px 22px;border-radius:18px;text-align:center}
+  .market-dep{margin-left:auto;margin-right:auto;margin-bottom:14px}
+  .market-card h3{font-size:1.15rem;margin-bottom:6px}
   .market-card .hours{font-size:.88rem}
 
   /* WhatsApp */
-  .wa-section{overflow:hidden}
+  .wa-perks{grid-template-columns:1fr;gap:14px;max-width:420px;margin:0 auto 40px}
+  .wa-perk{padding:20px 22px;border-radius:14px;text-align:center}
+  .wa-perk .icon{font-size:1.6rem;margin-bottom:8px}
+  .wa-perk h4{font-size:.98rem}
+  .wa-perk p{font-size:.88rem}
   .wa-sub{font-size:1rem;margin-bottom:32px}
-  .wa-perk{padding:20px 18px;border-radius:14px}
-  .wa-perk .icon{font-size:1.5rem;margin-bottom:10px}
-  .wa-perk h4{font-size:.95rem}
-  .wa-perk p{font-size:.85rem}
-  .wa-btn{min-height:56px;padding:0 32px;font-size:.95rem}
+  .wa-btn{min-height:56px;padding:0 34px;font-size:.95rem}
 
   /* Footer */
   .footer-grid{flex-direction:column;align-items:center;text-align:center;gap:28px}
-  .footer-logo{font-size:1.3rem}
-  footer .footer-desc{text-align:center;margin-top:8px}
+  .footer-logo{font-size:1.35rem}
+  footer .footer-desc{text-align:center;max-width:320px;margin:8px auto 0}
   .footer-links{align-items:center;gap:10px}
-  .footer-links a{font-size:.88rem}
-  .copyright{margin-top:36px;font-size:.78rem}
+  .footer-links a{font-size:.9rem}
+  .copyright{margin-top:36px;font-size:.8rem}
   footer{padding:48px 0 32px}
 
   /* Back to top */
-  .top-btn{width:44px;height:44px;font-size:1rem;bottom:14px;right:14px}
+  .top-btn{width:46px;height:46px;font-size:1rem;bottom:16px;right:16px}
+}
+
+/* ================= RESPONSIVE — PHONE (max 480) ================= */
+@media (max-width:480px){
+  :root{--nav-h:60px}
+  body{font-size:15px}
+  .wrap{padding:0 16px}
+  section{padding:52px 0}
+
+  /* Nav */
+  .logo{font-size:1rem}
+  .burger span{width:22px;height:2.5px;margin:4px 0}
+
+  /* Hero */
+  header{min-height:100svh;min-height:-webkit-fill-available;padding:calc(var(--nav-h) + 20px) 0 40px}
+  .hero-eyebrow{font-size:.72rem;margin-bottom:16px;gap:8px}
+  .hero-eyebrow::before{width:20px}
+  .hero-title{font-size:clamp(1.9rem,11vw,2.8rem)}
+  .hero-sub{font-size:.92rem;margin-top:16px;line-height:1.55}
+  .hero-ctas{margin-top:24px;gap:10px}
+  .hero-ctas .btn{min-height:48px;font-size:.88rem;padding:0 20px}
+  .petal.p1{width:40px;height:40px;top:10%;right:4%}
+  .petal.p2{display:none}
+  .petal.p3{width:50px;height:50px;bottom:6%;right:3%}
+
+  /* Marquee */
+  .marquee{padding:10px 0}
+  .marquee-track span{font-size:.78rem;padding:0 10px;letter-spacing:.04em}
+  .marquee .dot{padding:0 8px;font-size:.7rem}
+
+  /* Section titles */
+  .section-eyebrow{font-size:.72rem;margin-bottom:10px;gap:8px}
+  .section-eyebrow::before{width:20px}
+  h2{font-size:clamp(1.5rem,7.5vw,2.1rem);margin-bottom:28px}
+
+  /* Bouquets — 1 colonne */
+  .bouquet-grid{grid-template-columns:1fr;gap:14px}
+  .bouquet-card{padding:12px 12px 18px;border-radius:18px;gap:10px}
+  .bouquet-photo{aspect-ratio:16/10;border-radius:12px;font-size:2.2rem}
+  .bouquet-body{padding:0 2px;gap:6px}
+  .bouquet-name{font-size:1.1rem}
+  .bouquet-desc{font-size:.85rem;line-height:1.5}
+  .bouquet-foot{gap:8px;margin-top:2px}
+  .bouquet-price{font-size:1.15rem;padding:4px 10px;border-radius:8px}
+  .reserve-btn{min-height:38px;padding:0 16px;font-size:.82rem}
+  .bouquet-tag{font-size:.58rem;padding:4px 28px;top:18px;right:-28px}
+  .cc-note{padding:16px 16px;font-size:.85rem;margin-top:20px;border-radius:12px}
+
+  /* Form */
+  .form-panel{padding:28px 16px;border-radius:20px;margin-top:32px}
+  .form-panel h3{font-size:1.2rem;margin-bottom:6px;line-height:1.2}
+  .form-panel > p{font-size:.85rem;margin-bottom:22px}
+  .form-grid{gap:14px}
+  label{font-size:.75rem;letter-spacing:.04em}
+  input,select,textarea{
+    padding:12px 14px;min-height:46px;font-size:.92rem;
+    border-radius:12px;
+  }
+  select{background-position:right 14px center;padding-right:40px}
+  .date-trigger{padding:12px 14px;min-height:46px;border-radius:12px}
+  .cal-dropdown{padding:12px;border-radius:14px;left:-4px;right:-4px}
+  .cal-header{margin-bottom:12px}
+  .cal-nav{width:30px;height:30px;font-size:.95rem;border-radius:8px}
+  .cal-month{font-size:.9rem}
+  .cal-days-head{font-size:.65rem;margin-bottom:6px}
+  .cal-grid{gap:3px}
+  .cal-day{font-size:.78rem;border-radius:7px}
+  textarea{min-height:80px}
+  .submit-btn{min-height:50px;font-size:.9rem;padding:0 24px;letter-spacing:.03em}
+  .field-phone input{padding-right:44px}
+  .phone-flag{font-size:1.1rem;right:12px;bottom:13px}
+
+  /* Histoire */
+  .histoire{border-top-width:1.5px;border-bottom-width:1.5px}
+  .histoire-grid{gap:28px}
+  .histoire-text p{font-size:.9rem;margin-bottom:14px}
+  .histoire-visual{max-width:260px;aspect-ratio:1/1;border-radius:18px}
+  .histoire-visual .big-flower{font-size:3.8rem}
+  .histoire-visual figcaption{bottom:10px;left:10px;right:10px;padding:8px 12px;font-size:.78rem;border-radius:10px}
+  .stats{gap:16px;margin-top:24px;justify-content:center}
+  .stat{text-align:center}
+  .stat .num{font-size:1.8rem}
+  .stat .lab{font-size:.72rem;margin-top:4px}
+
+  /* Marchés */
+  .market-grid{max-width:100%}
+  .market-card{padding:20px 18px;border-radius:16px}
+  .market-dep{min-width:40px;height:32px;font-size:.85rem;padding:0 10px;border-radius:8px;margin-bottom:12px}
+  .market-card h3{font-size:1.05rem;margin-bottom:6px}
+  .market-card .days{font-size:.92rem}
+  .market-card .hours{font-size:.82rem;margin-top:3px}
+
+  /* WhatsApp */
+  .wa-section .petal{display:none}
+  .wa-perks{max-width:100%;margin-bottom:32px;gap:12px}
+  .wa-perk{padding:18px 16px;border-radius:12px}
+  .wa-perk .icon{font-size:1.4rem;margin-bottom:6px}
+  .wa-perk h4{font-size:.9rem;margin-bottom:4px}
+  .wa-perk p{font-size:.82rem}
+  .wa-sub{font-size:.9rem;margin-bottom:24px}
+  .wa-btn{min-height:52px;padding:0 28px;font-size:.88rem}
+
+  /* Footer */
+  .footer-grid{gap:24px}
+  .footer-logo{font-size:1.2rem}
+  footer .footer-desc{font-size:.85rem;max-width:280px}
+  .footer-links{gap:8px}
+  .footer-links a{font-size:.85rem}
+  .copyright{margin-top:28px;font-size:.75rem}
+  footer{padding:40px 0 28px}
+
+  /* Back to top */
+  .top-btn{width:42px;height:42px;font-size:.95rem;bottom:12px;right:12px}
 }
