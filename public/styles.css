@@ -451,7 +451,21 @@ footer .footer-desc{font-size:.92rem;opacity:.75;margin-top:10px;max-width:340px
   html{scroll-behavior:auto}
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= RESPONSIVE — TABLET (iPad) ================= */
+@media (max-width:1024px){
+  .wrap{padding:0 20px}
+  section{padding:88px 0}
+  .histoire-grid{grid-template-columns:1fr;gap:40px}
+  .histoire-visual{max-width:420px;margin:0 auto}
+  .wa-perks{grid-template-columns:1fr 1fr;gap:16px}
+  .wa-perks .wa-perk:last-child{grid-column:1/-1;max-width:50%;justify-self:center}
+  .bouquet-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+  .market-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+  .footer-grid{gap:32px}
+  .form-panel{padding:48px 36px}
+}
+
+/* ================= RESPONSIVE — MOBILE NAV ================= */
 @media (max-width:860px){
   .nav-links{
     position:fixed;top:var(--nav-h);right:0;left:0;
@@ -472,10 +486,103 @@ footer .footer-desc{font-size:.92rem;opacity:.75;margin-top:10px;max-width:340px
   .hero-scroll{display:none}
   .form-grid{grid-template-columns:1fr}
   .submit-btn{justify-self:stretch;width:100%}
-  .histoire-grid{grid-template-columns:1fr;gap:40px}
   .wa-perks{grid-template-columns:1fr}
+  .wa-perks .wa-perk:last-child{max-width:100%;justify-self:auto}
   section{padding:80px 0}
   .form-panel{padding:40px 26px}
   .stats{gap:28px}
   .top-btn{bottom:18px;right:18px}
+}
+
+/* ================= RESPONSIVE — SMALL MOBILE ================= */
+@media (max-width:480px){
+  :root{--nav-h:62px}
+  body{font-size:15px}
+  .wrap{padding:0 16px}
+  section{padding:60px 0}
+  .logo{font-size:1.05rem}
+  header{min-height:100svh;padding:calc(var(--nav-h) + 24px) 0 48px}
+  .hero-eyebrow{font-size:.75rem;margin-bottom:20px}
+  .hero-eyebrow::before{width:24px}
+  .hero-title{font-size:clamp(2rem,12vw,3.2rem)}
+  .hero-sub{font-size:1rem;margin-top:20px}
+  .hero-ctas{margin-top:28px;gap:12px}
+  .hero-ctas .btn{min-height:50px;font-size:.92rem}
+  .petal.p1{width:60px;height:60px;right:6%}
+  .petal.p3{width:80px;height:80px}
+  .petal.p4{display:none}
+
+  /* Marquee */
+  .marquee{padding:12px 0}
+  .marquee-track span{font-size:.9rem;padding:0 14px}
+  .marquee .dot{padding:0 10px;font-size:.8rem}
+
+  /* Section titles */
+  .section-eyebrow{font-size:.75rem;margin-bottom:12px}
+  h2{font-size:clamp(1.7rem,8vw,2.4rem);margin-bottom:36px}
+
+  /* Bouquets */
+  .bouquet-grid{grid-template-columns:1fr;gap:18px}
+  .bouquet-card{padding:16px 16px 22px}
+  .bouquet-name{font-size:1.25rem}
+  .bouquet-desc{font-size:.9rem}
+  .bouquet-price{font-size:1.3rem;padding:5px 12px}
+  .reserve-btn{min-height:40px;padding:0 18px;font-size:.85rem}
+  .bouquet-tag{font-size:.65rem;padding:5px 36px;top:24px;right:-36px}
+  .cc-note{padding:18px 20px;font-size:.92rem;margin-top:28px}
+
+  /* Form */
+  .form-panel{padding:32px 18px;border-radius:24px;margin-top:48px}
+  .form-panel h3{font-size:1.35rem;margin-bottom:8px}
+  .form-panel > p{font-size:.9rem;margin-bottom:28px}
+  .form-grid{gap:16px}
+  label{font-size:.78rem}
+  input,select,textarea{padding:12px 14px;min-height:48px;font-size:.95rem;border-radius:12px}
+  .date-trigger{padding:12px 14px;min-height:48px;border-radius:12px}
+  .cal-dropdown{padding:14px;border-radius:14px}
+  .cal-nav{width:32px;height:32px;font-size:1rem;border-radius:8px}
+  .cal-month{font-size:.95rem}
+  .cal-days-head{font-size:.7rem}
+  .cal-day{font-size:.82rem;border-radius:8px}
+  .submit-btn{min-height:54px;font-size:.95rem;padding:0 28px}
+  .field-phone input{padding-right:46px}
+  .phone-flag{font-size:1.1rem;right:14px}
+
+  /* Histoire */
+  .histoire-grid{gap:32px}
+  .histoire-text p{font-size:.95rem}
+  .histoire-visual{aspect-ratio:3/4;border-radius:20px;max-width:100%}
+  .histoire-visual .big-flower{font-size:5rem}
+  .histoire-visual figcaption{bottom:14px;left:14px;right:14px;padding:10px 14px;font-size:.82rem;border-radius:12px}
+  .stats{gap:20px;margin-top:28px}
+  .stat .num{font-size:2rem}
+  .stat .lab{font-size:.78rem}
+
+  /* Marchés */
+  .market-grid{grid-template-columns:1fr;gap:14px}
+  .market-card{padding:24px 22px;border-radius:18px}
+  .market-dep{min-width:44px;height:34px;font-size:.9rem;padding:0 12px;border-radius:8px;margin-bottom:14px}
+  .market-card h3{font-size:1.15rem;margin-bottom:8px}
+  .market-card .hours{font-size:.88rem}
+
+  /* WhatsApp */
+  .wa-section{overflow:hidden}
+  .wa-sub{font-size:1rem;margin-bottom:32px}
+  .wa-perk{padding:20px 18px;border-radius:14px}
+  .wa-perk .icon{font-size:1.5rem;margin-bottom:10px}
+  .wa-perk h4{font-size:.95rem}
+  .wa-perk p{font-size:.85rem}
+  .wa-btn{min-height:56px;padding:0 32px;font-size:.95rem}
+
+  /* Footer */
+  .footer-grid{flex-direction:column;align-items:center;text-align:center;gap:28px}
+  .footer-logo{font-size:1.3rem}
+  footer .footer-desc{text-align:center;margin-top:8px}
+  .footer-links{align-items:center;gap:10px}
+  .footer-links a{font-size:.88rem}
+  .copyright{margin-top:36px;font-size:.78rem}
+  footer{padding:48px 0 32px}
+
+  /* Back to top */
+  .top-btn{width:44px;height:44px;font-size:1rem;bottom:14px;right:14px}
 }
