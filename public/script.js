@@ -1,5 +1,5 @@
-// ===== CONFIG : remplacez par votre numéro WhatsApp (format international, sans +) =====
-const WHATSAPP_NUMBER = "33600000000";
+// ===== CONFIG : Web3Forms =====
+const WEB3FORMS_KEY = "e0035a00-9ab9-4b1f-9922-a5a8ec5c23d9";
 
 // Menu mobile
 function toggleMenu(btn){
@@ -221,10 +221,11 @@ function petalRain(){
   }, 7000);
 }
 
-// Soumission → message WhatsApp pré-rempli (zéro backend)
+// Soumission → envoi par email via Web3Forms
 function submitReservation(e){
   e.preventDefault();
   const f = e.target;
+  const submitBtn = f.querySelector('.submit-btn');
 
   // Validation nom : au moins 2 lettres distinctes, pas de répétition d'une seule lettre
   const nameVal = f.name.value.trim();
@@ -248,20 +249,50 @@ function submitReservation(e){
     return false;
   }
 
-  const lines = [
-    '🌸 NOUVELLE RÉSERVATION — Co & Son Provence',
-    '👤 ' + f.name.value,
-    '📞 ' + f.phone.value,
-    '💐 ' + f.bouquet.value,
-    '📍 ' + f.market.value,
-    '📅 ' + f.date.value + ' · ' + f.time.value
-  ];
-  if (f.message.value.trim()) lines.push('💬 ' + f.message.value.trim());
-  lines.push('(Paiement sur place au retrait)');
-  const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
-  document.getElementById('formSuccess').classList.add('show');
-  petalRain();
-  window.open(url, '_blank');
+  // Désactiver le bouton pendant l'envoi
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Envoi en cours...';
+
+  const data = {
+    access_key: WEB3FORMS_KEY,
+    subject: 'Nouvelle réservation — ' + f.bouquet.value,
+    from_name: 'Co & Son Provence',
+    name: f.name.value,
+    phone: f.phone.value,
+    bouquet: f.bouquet.value,
+    market: f.market.value,
+    date: f.date.value,
+    heure: f.time.value,
+    message: f.message.value.trim() || '(aucun message)'
+  };
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(result){
+    if(result.success){
+      document.getElementById('formSuccess').classList.add('show');
+      petalRain();
+      f.reset();
+      // Reset le calendrier et le drapeau
+      document.getElementById('dateLabel').textContent = 'Choisir une date';
+      document.querySelector('.date-trigger').classList.remove('has-value');
+      document.getElementById('phoneFlag').classList.remove('show');
+    } else {
+      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+    }
+  })
+  .catch(function(){
+    alert('Erreur de connexion. Vérifiez votre connexion internet et réessayez.');
+  })
+  .finally(function(){
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Envoyer ma réservation →';
+  });
+
   return false;
 }
 
