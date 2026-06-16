@@ -1,323 +1,290 @@
-// ===== CONFIG : Web3Forms =====
-const WEB3FORMS_KEY = "e0035a00-9ab9-4b1f-9922-a5a8ec5c23d9";
+// ===== CONFIG =====
+var WEB3FORMS_KEY = 'e0035a00-9ab9-4b1f-9922-a5a8ec5c23d9';
 
-// Menu mobile
-function toggleMenu(btn){
-  const links = document.getElementById('navLinks');
-  const open = links.classList.toggle('open');
+// ===== MENU MOBILE =====
+function toggleMenu(btn) {
+  var links = document.getElementById('navLinks');
+  var open = links.classList.toggle('open');
   btn.setAttribute('aria-expanded', open);
 }
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click',()=>{
+document.querySelectorAll('.nav-links a').forEach(function(a) {
+  a.addEventListener('click', function() {
     document.getElementById('navLinks').classList.remove('open');
-    document.querySelector('.burger').setAttribute('aria-expanded','false');
+    document.querySelector('.burger').setAttribute('aria-expanded', 'false');
   });
 });
 
-// Pré-sélection du bouquet depuis les cartes
-function selectBouquet(name){
-  const select = document.getElementById('bouquet');
-  [...select.options].forEach(o=>{ if(o.text === name) select.value = o.text; });
-  document.getElementById('reserver').scrollIntoView({behavior:'smooth'});
-  setTimeout(()=>document.getElementById('name').focus({preventScroll:true}), 650);
+// ===== PRE-SELECTION BOUQUET =====
+function selectBouquet(name) {
+  var select = document.getElementById('bouquet');
+  for (var i = 0; i < select.options.length; i++) {
+    if (select.options[i].text === name) { select.selectedIndex = i; break; }
+  }
+  document.getElementById('reserver').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(function() { document.getElementById('fname').focus({ preventScroll: true }); }, 650);
 }
 
 // ===== PHONE COUNTRY FLAG =====
-(function(){
-  const phone = document.getElementById('phone');
-  const flag = document.getElementById('phoneFlag');
-
-  // Prefix → flag emoji (longer prefixes first for correct matching)
-  const CODES = [
-    ['+377','🇲🇨'],['+376','🇦🇩'],['+352','🇱🇺'],['+351','🇵🇹'],
-    ['+212','🇲🇦'],['+213','🇩🇿'],['+216','🇹🇳'],['+225','🇨🇮'],
-    ['+237','🇨🇲'],['+221','🇸🇳'],['+242','🇨🇬'],
-    ['+41','🇨🇭'],['+44','🇬🇧'],['+49','🇩🇪'],['+34','🇪🇸'],
-    ['+39','🇮🇹'],['+32','🇧🇪'],['+31','🇳🇱'],['+33','🇫🇷'],
-    ['+30','🇬🇷'],['+36','🇭🇺'],['+40','🇷🇴'],['+43','🇦🇹'],
-    ['+45','🇩🇰'],['+46','🇸🇪'],['+47','🇳🇴'],['+48','🇵🇱'],
-    ['+35','🇵🇹'],['+90','🇹🇷'],['+55','🇧🇷'],['+52','🇲🇽'],
-    ['+81','🇯🇵'],['+82','🇰🇷'],['+86','🇨🇳'],['+91','🇮🇳'],
-    ['+61','🇦🇺'],['+1','🇺🇸'],
+(function() {
+  var phone = document.getElementById('phone');
+  var flag = document.getElementById('phoneFlag');
+  var CODES = [
+    ['+377','\u{1F1F2}\u{1F1E8}'],['+376','\u{1F1E6}\u{1F1E9}'],['+352','\u{1F1F1}\u{1F1FA}'],
+    ['+351','\u{1F1F5}\u{1F1F9}'],['+212','\u{1F1F2}\u{1F1E6}'],['+213','\u{1F1E9}\u{1F1FF}'],
+    ['+216','\u{1F1F9}\u{1F1F3}'],['+225','\u{1F1E8}\u{1F1EE}'],['+237','\u{1F1E8}\u{1F1F2}'],
+    ['+221','\u{1F1F8}\u{1F1F3}'],['+242','\u{1F1E8}\u{1F1EC}'],
+    ['+41','\u{1F1E8}\u{1F1ED}'],['+44','\u{1F1EC}\u{1F1E7}'],['+49','\u{1F1E9}\u{1F1EA}'],
+    ['+34','\u{1F1EA}\u{1F1F8}'],['+39','\u{1F1EE}\u{1F1F9}'],['+32','\u{1F1E7}\u{1F1EA}'],
+    ['+31','\u{1F1F3}\u{1F1F1}'],['+33','\u{1F1EB}\u{1F1F7}'],['+30','\u{1F1EC}\u{1F1F7}'],
+    ['+36','\u{1F1ED}\u{1F1FA}'],['+40','\u{1F1F7}\u{1F1F4}'],['+43','\u{1F1E6}\u{1F1F9}'],
+    ['+45','\u{1F1E9}\u{1F1F0}'],['+46','\u{1F1F8}\u{1F1EA}'],['+47','\u{1F1F3}\u{1F1F4}'],
+    ['+48','\u{1F1F5}\u{1F1F1}'],['+90','\u{1F1F9}\u{1F1F7}'],['+55','\u{1F1E7}\u{1F1F7}'],
+    ['+52','\u{1F1F2}\u{1F1FD}'],['+81','\u{1F1EF}\u{1F1F5}'],['+82','\u{1F1F0}\u{1F1F7}'],
+    ['+86','\u{1F1E8}\u{1F1F3}'],['+91','\u{1F1EE}\u{1F1F3}'],['+61','\u{1F1E6}\u{1F1FA}'],
+    ['+1','\u{1F1FA}\u{1F1F8}']
   ];
-
-  function detectFlag(val){
-    const clean = val.replace(/[\s.()-]/g, '');
-    // International format with +
-    if(clean.startsWith('+')){
-      for(const [prefix, emoji] of CODES){
-        if(clean.startsWith(prefix)) return emoji;
+  function detectFlag(val) {
+    var clean = val.replace(/[\s.()-]/g, '');
+    if (clean.charAt(0) === '+') {
+      for (var i = 0; i < CODES.length; i++) {
+        if (clean.indexOf(CODES[i][0]) === 0) return CODES[i][1];
       }
     }
-    // French local format (06, 07, 01-05, 09)
-    if(/^0[1-9]/.test(clean) && clean.length >= 4) return '🇫🇷';
+    if (/^0[1-9]/.test(clean) && clean.length >= 4) return '\u{1F1EB}\u{1F1F7}';
     return null;
   }
-
-  phone.addEventListener('input', function(){
-    const emoji = detectFlag(this.value);
-    if(emoji){
-      flag.textContent = emoji;
-      flag.classList.add('show');
-    } else {
-      flag.classList.remove('show');
-    }
+  phone.addEventListener('input', function() {
+    var emoji = detectFlag(this.value);
+    if (emoji) { flag.textContent = emoji; flag.classList.add('show'); }
+    else { flag.classList.remove('show'); }
   });
 })();
 
 // ===== CUSTOM CALENDAR =====
-(function(){
-  const trigger = document.getElementById('dateTrigger');
-  const dropdown = document.getElementById('calDropdown');
-  const grid = document.getElementById('calGrid');
-  const monthLabel = document.getElementById('calMonth');
-  const hiddenInput = document.getElementById('date');
-  const dateLabel = document.getElementById('dateLabel');
-  const prevBtn = document.getElementById('calPrev');
-  const nextBtn = document.getElementById('calNext');
-  const marketSelect = document.getElementById('market');
-
-  const MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-  const tomorrow = new Date();
+(function() {
+  var trigger = document.getElementById('dateTrigger');
+  var dropdown = document.getElementById('calDropdown');
+  var grid = document.getElementById('calGrid');
+  var monthLabel = document.getElementById('calMonth');
+  var hiddenInput = document.getElementById('date');
+  var dateLabel = document.getElementById('dateLabel');
+  var prevBtn = document.getElementById('calPrev');
+  var nextBtn = document.getElementById('calNext');
+  var marketSelect = document.getElementById('market');
+  var MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  var tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(0,0,0,0);
-
-  // Map market options to allowed JS days (0=Sunday … 6=Saturday)
-  const MARKET_DAYS = {
-    "L'Isle-sur-la-Sorgue (84) — Jeudi": [4],
-    "L'Isle-sur-la-Sorgue (84) — Dimanche": [0],
-    "Salon-de-Provence (13) — Mercredi": [3],
-    "Pont-Saint-Esprit (30) — Samedi": [6]
+  tomorrow.setHours(0, 0, 0, 0);
+  var MARKET_DAYS = {
+    "L'Isle-sur-la-Sorgue (84) \u2014 Jeudi": [4],
+    "L'Isle-sur-la-Sorgue (84) \u2014 Dimanche": [0],
+    "Salon-de-Provence (13) \u2014 Mercredi": [3],
+    "Pont-Saint-Esprit (30) \u2014 Samedi": [6]
   };
-
-  function getAllowedDays(){
-    const val = marketSelect.value;
-    return MARKET_DAYS[val] || null; // null = no filter (no market selected)
+  function getAllowedDays() {
+    return MARKET_DAYS[marketSelect.value] || null;
   }
+  var currentMonth = tomorrow.getMonth();
+  var currentYear = tomorrow.getFullYear();
+  var selectedDate = null;
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
-  let currentMonth = tomorrow.getMonth();
-  let currentYear = tomorrow.getFullYear();
-  let selectedDate = null;
-
-  function pad(n){ return n < 10 ? '0'+n : ''+n; }
-
-  function renderCalendar(){
+  function renderCalendar() {
     monthLabel.textContent = MONTHS_FR[currentMonth] + ' ' + currentYear;
     grid.innerHTML = '';
+    var allowedDays = getAllowedDays();
+    var firstDay = new Date(currentYear, currentMonth, 1);
+    var startDay = firstDay.getDay();
+    startDay = startDay === 0 ? 6 : startDay - 1;
+    var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    var today = new Date(); today.setHours(0, 0, 0, 0);
 
-    const allowedDays = getAllowedDays();
-
-    const firstDay = new Date(currentYear, currentMonth, 1);
-    let startDay = firstDay.getDay();
-    startDay = startDay === 0 ? 6 : startDay - 1; // Monday = 0
-
-    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-    const today = new Date();
-    today.setHours(0,0,0,0);
-
-    // Empty cells before first day
-    for(let i = 0; i < startDay; i++){
-      const empty = document.createElement('span');
+    for (var i = 0; i < startDay; i++) {
+      var empty = document.createElement('span');
       empty.className = 'cal-day empty';
       grid.appendChild(empty);
     }
-
-    for(let d = 1; d <= daysInMonth; d++){
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'cal-day';
-      btn.textContent = d;
-
-      const thisDate = new Date(currentYear, currentMonth, d);
-      thisDate.setHours(0,0,0,0);
-
-      const dayOfWeek = thisDate.getDay();
-      const isPast = thisDate < tomorrow;
-      const isWrongDay = allowedDays !== null && !allowedDays.includes(dayOfWeek);
-
-      if(isPast || isWrongDay){
-        btn.classList.add('disabled');
-      }
-
-      if(thisDate.getTime() === today.getTime()){
-        btn.classList.add('today');
-      }
-
-      if(selectedDate && thisDate.getTime() === selectedDate.getTime()){
-        btn.classList.add('selected');
-      }
-
-      btn.addEventListener('click', function(){
-        selectedDate = thisDate;
-        const iso = currentYear + '-' + pad(currentMonth + 1) + '-' + pad(d);
-        hiddenInput.value = iso;
-        dateLabel.textContent = d + ' ' + MONTHS_FR[currentMonth] + ' ' + currentYear;
-        trigger.classList.add('has-value');
-        dropdown.classList.remove('open');
-        renderCalendar();
-      });
-
-      grid.appendChild(btn);
+    for (var d = 1; d <= daysInMonth; d++) {
+      (function(day) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cal-day';
+        btn.textContent = day;
+        var thisDate = new Date(currentYear, currentMonth, day);
+        thisDate.setHours(0, 0, 0, 0);
+        var dayOfWeek = thisDate.getDay();
+        if (thisDate < tomorrow || (allowedDays !== null && allowedDays.indexOf(dayOfWeek) === -1)) {
+          btn.classList.add('disabled');
+        }
+        if (thisDate.getTime() === today.getTime()) btn.classList.add('today');
+        if (selectedDate && thisDate.getTime() === selectedDate.getTime()) btn.classList.add('selected');
+        btn.addEventListener('click', function() {
+          selectedDate = thisDate;
+          hiddenInput.value = currentYear + '-' + pad(currentMonth + 1) + '-' + pad(day);
+          dateLabel.textContent = day + ' ' + MONTHS_FR[currentMonth] + ' ' + currentYear;
+          trigger.classList.add('has-value');
+          dropdown.classList.remove('open');
+          renderCalendar();
+        });
+        grid.appendChild(btn);
+      })(d);
     }
   }
 
-  // Reset date when market changes
-  marketSelect.addEventListener('change', function(){
+  marketSelect.addEventListener('change', function() {
     selectedDate = null;
     hiddenInput.value = '';
     dateLabel.textContent = 'Choisir une date';
     trigger.classList.remove('has-value');
-    if(dropdown.classList.contains('open')) renderCalendar();
+    if (dropdown.classList.contains('open')) renderCalendar();
   });
-
-  trigger.addEventListener('click', function(e){
+  trigger.addEventListener('click', function(e) {
     e.stopPropagation();
     dropdown.classList.toggle('open');
-    if(dropdown.classList.contains('open')) renderCalendar();
+    if (dropdown.classList.contains('open')) renderCalendar();
   });
-
-  prevBtn.addEventListener('click', function(e){
+  prevBtn.addEventListener('click', function(e) {
     e.stopPropagation();
     currentMonth--;
-    if(currentMonth < 0){ currentMonth = 11; currentYear--; }
+    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
     renderCalendar();
   });
-
-  nextBtn.addEventListener('click', function(e){
+  nextBtn.addEventListener('click', function(e) {
     e.stopPropagation();
     currentMonth++;
-    if(currentMonth > 11){ currentMonth = 0; currentYear++; }
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
     renderCalendar();
   });
-
-  document.addEventListener('click', function(e){
-    if(!dropdown.contains(e.target) && e.target !== trigger && !trigger.contains(e.target)){
+  document.addEventListener('click', function(e) {
+    if (!dropdown.contains(e.target) && e.target !== trigger && !trigger.contains(e.target)) {
       dropdown.classList.remove('open');
     }
   });
 })();
 
-// ===== PETAL RAIN ANIMATION =====
-function petalRain(){
-  const container = document.getElementById('petalRain');
-  const petals = ['✿','❀','✾','❁','✿','❀'];
-  const count = 35;
-
-  for(let i = 0; i < count; i++){
-    const petal = document.createElement('span');
-    petal.className = 'falling-petal';
-    petal.textContent = petals[Math.floor(Math.random() * petals.length)];
-    petal.style.left = Math.random() * 100 + 'vw';
-    petal.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
-    petal.style.animationDuration = (2.5 + Math.random() * 3) + 's';
-    petal.style.animationDelay = (Math.random() * 1.8) + 's';
-    petal.style.color = Math.random() > 0.5 ? '#CA1311' : '#FDA8A7';
-    container.appendChild(petal);
+// ===== PETAL RAIN =====
+function petalRain() {
+  var container = document.getElementById('petalRain');
+  var petals = ['\u273F', '\u2740', '\u273E', '\u2741'];
+  for (var i = 0; i < 35; i++) {
+    var p = document.createElement('span');
+    p.className = 'falling-petal';
+    p.textContent = petals[Math.floor(Math.random() * petals.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+    p.style.animationDuration = (2.5 + Math.random() * 3) + 's';
+    p.style.animationDelay = (Math.random() * 1.8) + 's';
+    p.style.color = Math.random() > 0.5 ? '#CA1311' : '#FDA8A7';
+    container.appendChild(p);
   }
-
-  // Cleanup after animation
-  setTimeout(()=>{
-    container.innerHTML = '';
-  }, 7000);
+  setTimeout(function() { container.innerHTML = ''; }, 7000);
 }
 
-// Soumission → envoi par email via Web3Forms
-function submitReservation(e){
+// ===== FORM SUBMISSION =====
+function submitReservation(e) {
   e.preventDefault();
-  const f = e.target;
-  const submitBtn = f.querySelector('.submit-btn');
 
-  // Validation nom : au moins 2 lettres distinctes, pas de répétition d'une seule lettre
-  const nameVal = f.name.value.trim();
-  const nameLetters = nameVal.replace(/[^a-zA-ZÀ-ÿ]/g, '');
-  if(nameLetters.length < 2 || new Set(nameLetters.toLowerCase()).size < 2){
-    f.name.focus();
-    f.name.setCustomValidity('Entrez un vrai prénom et nom (au moins 2 lettres différentes)');
-    f.name.reportValidity();
-    f.name.setCustomValidity('');
+  // Get fields by ID to avoid form.name collision
+  var nameField = document.getElementById('fname');
+  var phoneField = document.getElementById('phone');
+  var bouquetField = document.getElementById('bouquet');
+  var marketField = document.getElementById('market');
+  var dateField = document.getElementById('date');
+  var timeField = document.getElementById('time');
+  var messageField = document.getElementById('message');
+  var submitBtn = document.querySelector('.submit-btn');
+
+  // Validate name
+  var nameVal = nameField.value.trim();
+  var nameLetters = nameVal.replace(/[^a-zA-ZÀ-ÿ]/g, '');
+  if (nameLetters.length < 2 || new Set(nameLetters.toLowerCase()).size < 2) {
+    nameField.setCustomValidity('Entrez un vrai prénom et nom (au moins 2 lettres différentes)');
+    nameField.reportValidity();
+    nameField.setCustomValidity('');
     return false;
   }
 
-  // Validation téléphone : au moins 7 chiffres (couvre international)
-  const phoneVal = f.phone.value.trim();
-  const phoneDigits = phoneVal.replace(/\D/g, '');
-  if(phoneDigits.length < 7){
-    f.phone.focus();
-    f.phone.setCustomValidity('Entrez un numéro valide (au moins 7 chiffres)');
-    f.phone.reportValidity();
-    f.phone.setCustomValidity('');
+  // Validate phone
+  var phoneDigits = phoneField.value.replace(/\D/g, '');
+  if (phoneDigits.length < 7) {
+    phoneField.setCustomValidity('Entrez un numéro valide (au moins 7 chiffres)');
+    phoneField.reportValidity();
+    phoneField.setCustomValidity('');
     return false;
   }
 
-  // Désactiver le bouton pendant l'envoi
+  // Disable button
   submitBtn.disabled = true;
   submitBtn.textContent = 'Envoi en cours...';
 
-  const data = {
+  var data = {
     access_key: WEB3FORMS_KEY,
-    subject: 'Nouvelle réservation — ' + f.bouquet.value,
+    subject: 'Nouvelle réservation \u2014 ' + bouquetField.value,
     from_name: 'Co & Son Provence',
-    name: f.name.value,
-    phone: f.phone.value,
-    bouquet: f.bouquet.value,
-    market: f.market.value,
-    date: f.date.value,
-    heure: f.time.value,
-    message: f.message.value.trim() || '(aucun message)'
+    Nom: nameField.value,
+    Telephone: phoneField.value,
+    Bouquet: bouquetField.value,
+    Marche: marketField.value,
+    Date: dateField.value,
+    Heure: timeField.value,
+    Message: messageField.value.trim() || '(aucun message)'
   };
 
   fetch('https://api.web3forms.com/submit', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify(data)
   })
-  .then(function(res){ return res.json(); })
-  .then(function(result){
-    if(result.success){
+  .then(function(res) { return res.json(); })
+  .then(function(result) {
+    if (result.success) {
       document.getElementById('formSuccess').classList.add('show');
       petalRain();
-      f.reset();
-      // Reset le calendrier et le drapeau
+      document.getElementById('reservationForm').reset();
       document.getElementById('dateLabel').textContent = 'Choisir une date';
       document.querySelector('.date-trigger').classList.remove('has-value');
       document.getElementById('phoneFlag').classList.remove('show');
     } else {
-      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+      alert('Erreur : ' + (result.message || 'Veuillez réessayer.'));
     }
   })
-  .catch(function(){
-    alert('Erreur de connexion. Vérifiez votre connexion internet et réessayez.');
+  .catch(function(err) {
+    alert('Erreur de connexion. Vérifiez votre internet et réessayez.');
   })
-  .finally(function(){
+  .finally(function() {
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Envoyer ma réservation →';
+    submitBtn.textContent = 'Envoyer ma réservation \u2192';
   });
 
   return false;
 }
 
-// Reveal on scroll
-const io = new IntersectionObserver(entries=>{
-  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); } });
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// ===== REVEAL ON SCROLL =====
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(en) {
+    if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
 
-// Scrollspy — souligne le lien de la section visible
-const spyLinks = document.querySelectorAll('[data-spy]');
-const spy = new IntersectionObserver(entries=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting){
-      spyLinks.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id));
+// ===== SCROLLSPY =====
+var spyLinks = document.querySelectorAll('[data-spy]');
+var spy = new IntersectionObserver(function(entries) {
+  entries.forEach(function(en) {
+    if (en.isIntersecting) {
+      spyLinks.forEach(function(l) {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id);
+      });
     }
   });
-},{rootMargin:'-40% 0px -55% 0px'});
-['bouquets','histoire','marches','whatsapp'].forEach(id=>{
-  const el = document.getElementById(id);
-  if(el) spy.observe(el);
+}, { rootMargin: '-40% 0px -55% 0px' });
+['bouquets', 'histoire', 'marches', 'whatsapp'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (el) spy.observe(el);
 });
 
-// Bouton retour en haut
-const topBtn = document.getElementById('topBtn');
-window.addEventListener('scroll',()=>{
+// ===== BACK TO TOP =====
+var topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll', function() {
   topBtn.classList.toggle('show', window.scrollY > 700);
-},{passive:true});
+}, { passive: true });
