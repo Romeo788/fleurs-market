@@ -4,6 +4,15 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<script is:inline>
+(function(){
+  var p = new URLSearchParams(window.location.search).get("preview") === "true";
+  if (p) document.cookie = "__preview=1;path=/;max-age=31536000";
+  if (!p && document.cookie.indexOf("__preview=1") === -1) {
+    window.location.replace("https://www.instagram.com/coandsonprovence/");
+  }
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Co & Son Provence — Fleurs fraîches sur vos marchés</title>
 <meta name="description" content="Co & Son Provence : bouquets de fleurs fraîches sur les marchés de L'Isle-sur-la-Sorgue, Salon-de-Provence et Pont-Saint-Esprit. Réservez en click & collect, payez sur place.">
